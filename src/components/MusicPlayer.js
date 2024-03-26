@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PlayerControls from './PlayerControls';
-import SongDetails from './SongDetails';
-import Playlist from './Playlist';
-import songs from '../songs';
+import React, { useState, useRef, useEffect } from "react";
+import PlayerControls from "./PlayerControls";
+import SongDetails from "./SongDetails";
+import Playlist from "./Playlist";
+import songs from "../songs";
 
 const defaultImageSrc = "default.png";
 
@@ -27,9 +27,12 @@ const MusicPlayer = () => {
     };
 
     if (audioElement) {
-      audioElement.addEventListener('canplaythrough', handleCanPlayThrough);
+      audioElement.addEventListener("canplaythrough", handleCanPlayThrough);
       return () => {
-        audioElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+        audioElement.removeEventListener(
+          "canplaythrough",
+          handleCanPlayThrough,
+        );
       };
     }
   }, [audioRef]);
@@ -39,15 +42,17 @@ const MusicPlayer = () => {
 
     const handleEnded = () => {
       if (!isLoop) {
-        const nextIndex = isShuffle ? Math.floor(Math.random() * songs.length) : (currentSongIndex + 1) % songs.length;
+        const nextIndex = isShuffle
+          ? Math.floor(Math.random() * songs.length)
+          : (currentSongIndex + 1) % songs.length;
         setCurrentSongIndex(nextIndex);
       }
     };
 
     if (audioElement) {
-      audioElement.addEventListener('ended', handleEnded);
+      audioElement.addEventListener("ended", handleEnded);
       return () => {
-        audioElement.removeEventListener('ended', handleEnded);
+        audioElement.removeEventListener("ended", handleEnded);
       };
     }
   }, [currentSongIndex, isShuffle, isLoop]);
@@ -56,15 +61,18 @@ const MusicPlayer = () => {
     const audioElement = audioRef.current;
 
     const handleLoadedMetadata = () => {
-      audioElement.play().catch(error => {
-        console.log('Autoplay was prevented:', error);
+      audioElement.play().catch((error) => {
+        console.log("Autoplay was prevented:", error);
       });
     };
 
     if (audioElement && isAudioReady) {
-      audioElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+      audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
       return () => {
-        audioElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        audioElement.removeEventListener(
+          "loadedmetadata",
+          handleLoadedMetadata,
+        );
       };
     }
   }, [currentSong, isAudioReady]);
@@ -89,7 +97,9 @@ const MusicPlayer = () => {
   };
 
   const formatTime = (time) => {
-    return Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2);
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
   };
 
   const skipTrackHandler = (direction) => {
@@ -100,7 +110,9 @@ const MusicPlayer = () => {
       if (direction === "forward") {
         setCurrentSongIndex((prevIndex) => (prevIndex + 1) % songs.length);
       } else {
-        setCurrentSongIndex((prevIndex) => (prevIndex - 1 + songs.length) % songs.length);
+        setCurrentSongIndex(
+          (prevIndex) => (prevIndex - 1 + songs.length) % songs.length,
+        );
       }
     }
   };
@@ -118,7 +130,9 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className={`container mx-auto p-4 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'}`}>
+    <div
+      className={`container mx-auto p-4 ${isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-800"}`}
+    >
       <div className="max-w-md mx-auto bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg">
         <SongDetails
           currentSong={currentSong}

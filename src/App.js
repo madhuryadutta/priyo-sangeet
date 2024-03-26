@@ -1,5 +1,5 @@
-import React from 'react';
-import MusicPlayer from './components/MusicPlayer';
+import React from "react";
+import MusicPlayer from "./components/MusicPlayer";
 
 function App() {
   return (
