@@ -20,29 +20,49 @@ const progressBar = document.querySelector("#ProgressMeterContainer");
 let isPlaying = false;
 let index = 0;
 
+var playlist;
+const shufflePlaylist = document.querySelector("#shufflePlaylist");
+const ResetPlaylist = document.querySelector("#ResetPlaylist");
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+
+
 const songDataBase = [
-{
-                        songSrc:"./music/better-day-186374.mp3",
-                        title: "better-day-186374.mp3",
-                        artist: "better-day-186374.mp3",
-                        imgSrc: "./img/better-day-186374.mp3.jpg",
-                    },{
-                        songSrc:"./music/ethereal-vistas-191254.mp3",
-                        title: "ethereal-vistas-191254.mp3",
-                        artist: "ethereal-vistas-191254.mp3",
-                        imgSrc: "./img/ethereal-vistas-191254.mp3.jpg",
-                    },{
-                        songSrc:"./music/solitude-dark-ambient-electronic-197737.mp3",
-                        title: "solitude-dark-ambient-electronic-197737.mp3",
-                        artist: "solitude-dark-ambient-electronic-197737.mp3",
-                        imgSrc: "./img/solitude-dark-ambient-electronic-197737.mp3.jpg",
-                    },{
-                        songSrc:"./music/tunetank.com_259_world-we-live-in_by_motion-productions.mp3",
-                        title: "tunetank.com_259_world-we-live-in_by_motion-productions.mp3",
-                        artist: "tunetank.com_259_world-we-live-in_by_motion-productions.mp3",
-                        imgSrc: "./img/tunetank.com_259_world-we-live-in_by_motion-productions.mp3.jpg",
-                    },
+
 ];
+
+playlist = songDataBase;
+
+shufflePlaylist.addEventListener("click", () => {
+    shuffle(playlist);
+    console.log(playlist);
+});
+
+
+ResetPlaylist.addEventListener("click", () => {
+    playlist = songDataBase;
+    console.log(playlist);
+});
+
+
+
 
 const loadMusic = () => {
   audio.src = songDataBase[index].songSrc;

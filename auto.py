@@ -6,6 +6,7 @@
 import os
 import sys
 import eyed3
+eyed3.log.setLevel("ERROR")
 
 # -----------------------------------------------static data section------------------------------------------------
 
@@ -15,9 +16,9 @@ dir_list = os.listdir(path)
 dir_list.sort()
 # prints all files
 # print(dir_list)
-final_data = ""
-dynamic_data = ""
-first = """
+final_data=''
+dynamic_data=''
+first='''
 const mainCard = document.querySelector("#ContentWarpper");
 const songImg = document.querySelector("#SongImg");
 const controlButtons = document.querySelector(".control");
@@ -39,11 +40,51 @@ const progressBar = document.querySelector("#ProgressMeterContainer");
 let isPlaying = false;
 let index = 0;
 
-const songDataBase = [
-"""
+var playlist;
+const shufflePlaylist = document.querySelector("#shufflePlaylist");
+const ResetPlaylist = document.querySelector("#ResetPlaylist");
 
-second = """
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+
+
+const songDataBase = [
+'''
+
+second='''
 ];
+
+playlist = songDataBase;
+
+shufflePlaylist.addEventListener("click", () => {
+    shuffle(playlist);
+    console.log(playlist);
+});
+
+
+ResetPlaylist.addEventListener("click", () => {
+    playlist = songDataBase;
+    console.log(playlist);
+});
+
+
+
 
 const loadMusic = () => {
   audio.src = songDataBase[index].songSrc;
@@ -133,47 +174,38 @@ mainCard.addEventListener("mouseleave", () => {
   songImg.style.transform = "rotate(0deg)";
   controlButtons.style.transform = "rotate(0deg)";
 });
-"""
+'''
 
-if len(dir_list) >= 1:
-    for i in dir_list:
-        url_construct = "./music/" + i
-        audio = eyed3.load(url_construct)
+if len(dir_list)>=1 :
+    for i in dir_list :
+        url_construct="./music/"+i
+        audio=eyed3.load(url_construct)
         if audio.tag is not None:
-            final_title = audio.tag.title.replace('"', "")
-            final_artist = audio.tag.artist.replace("/", ",")
-            final_album = audio.tag.album
+            final_title=(audio.tag.title or 'NA').replace('"', '').replace('?', '').replace('#', '')
+            final_artist=(audio.tag.artist or 'NA').replace('/', ',').replace('?', '').replace('#', '')
+            final_album=audio.tag.album
+            image_name=''.join(letter for letter in final_title if letter.isalnum()or letter in ".")
+            final_image_name= "./img/"+image_name+".jpg"
+            image_name_with_extension =image_name+".jpg"
             for image in audio.tag.images:
-                image_file = open("./img/{0}.jpg".format(final_title), "wb")
+                image_file = open(final_image_name.format(final_title), "wb")
                 image_file.write(image.image_data)
                 image_file.close()
         else:
             final_title = i.replace('"', "")
             final_artist = i.replace("/", ",")
             final_album = i
+            image_name_with_extension = "sbg.jpg"
 
-        # For fetching Data from own server
+            # for fetcing data from server
+        dynamic_data=dynamic_data+ '''{
+                            songSrc:"'''+ '''./music/'''+ i +'''",
+                            title: "''' + final_title+'''",
+                            artist: "'''+final_artist+'''",
+                            imgSrc: "'''+'''./img/'''+image_name_with_extension+'''",
+                        },'''
 
-        dynamic_data = (
-            dynamic_data
-            + '''{
-                        songSrc:"'''
-            + """./music/"""
-            + i
-            + '''",
-                        title: "'''
-            + final_title
-            + '''",
-                        artist: "'''
-            + final_artist
-            + """",
-                        imgSrc: "./img/"""
-            + final_title
-            + """.jpg",
-                    },"""
-        )
-    print(dynamic_data)
-    final_data = first + dynamic_data + second
+    final_data=first+dynamic_data+second
 
     # -----------------------------------------------generate script js file------------------------------------------------
 

@@ -7,7 +7,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -41,12 +41,7 @@ body {
   display: grid;
   place-items: center;
   padding: 50px 0px;
-  background: linear-gradient(
-      45deg,
-      rgba(0, 238, 255, 0.842),
-      rgba(255, 0, 149, 0.651)
-    ),
-    url(../img/sbg.jpg);
+  background: linear-gradient(45deg, rgba(0, 238, 255, 0.842), rgba(255, 0, 149, 0.651)), url(../image/sbg.jpg);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -109,7 +104,7 @@ body {
 
 #AllInBody #ContentWarpper #WholeCardContainer #MusicDesc h2 {
   font-size: 2rem;
-  font-family: "Reggae One", cursive;
+  font-family: 'Reggae One', cursive;
   color: #fc0093;
   text-shadow: 1px 1px 2px black;
 }
@@ -138,22 +133,12 @@ body {
   cursor: pointer;
 }
 
-#AllInBody
-  #ContentWarpper
-  #WholeCardContainer
-  #MusicControls
-  div:nth-child(odd)
-  i {
+#AllInBody #ContentWarpper #WholeCardContainer #MusicControls div:nth-child(odd) i {
   border: none;
   border: 2px solid transparent;
 }
 
-#AllInBody
-  #ContentWarpper
-  #WholeCardContainer
-  #MusicControls
-  div:nth-child(odd)
-  i:hover {
+#AllInBody #ContentWarpper #WholeCardContainer #MusicControls div:nth-child(odd) i:hover {
   border-color: #ff0080;
   background: none;
   color: #ff0080;
@@ -177,17 +162,11 @@ body {
 
 #AllInBody #ContentWarpper #Progress_elements {
   padding: 10px 0px;
-  background: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#00eeff),
-    to(#ff006a)
-  );
+  background: -webkit-gradient(linear, right top, left top, from(#00eeff), to(#ff006a));
   background: linear-gradient(to left, #00eeff, #ff006a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-family: "Goldman", cursive;
+  font-family: 'Goldman', cursive;
   font-weight: 900;
   text-shadow: 1px 1px 1px white;
 }
@@ -212,11 +191,7 @@ body {
   cursor: pointer;
 }
 
-#AllInBody
-  #ContentWarpper
-  #Progress_elements
-  #ProgressMeterContainer
-  #ProgrssMeterChild {
+#AllInBody #ContentWarpper #Progress_elements #ProgressMeterContainer #ProgrssMeterChild {
   width: 0%;
   height: 100%;
   background: linear-gradient(45deg, #00e1ff, #ff0077);

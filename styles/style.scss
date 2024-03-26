@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Reggae+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Goldman&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 ::-webkit-scrollbar {
   width: 6px;
@@ -34,7 +34,7 @@ body {
       rgba(0, 238, 255, 0.842),
       rgba(255, 0, 149, 0.651)
     ),
-    url(../img/sbg.jpg);
+    url(../image/sbg.jpg);
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -73,7 +73,7 @@ body {
         margin: 0px 0px 20px 0px;
         h2 {
           font-size: 2rem;
-          font-family: "Reggae One", cursive;
+          font-family: 'Reggae One', cursive;
           color: rgb(252, 0, 147);
           text-shadow: 1px 1px 2px black;
         }
@@ -124,7 +124,7 @@ body {
       background: linear-gradient(to left, rgb(0, 238, 255), rgb(255, 0, 106));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-family: "Goldman", cursive;
+      font-family: 'Goldman', cursive;
       font-weight: 900;
       text-shadow: 1px 1px 1px white;
       #Progressduration {
