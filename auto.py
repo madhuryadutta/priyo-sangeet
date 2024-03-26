@@ -41,7 +41,7 @@ if len(dir_list) >= 1:
             image_name = "".join(
                 letter for letter in final_title if letter.isalnum() or letter in "."
             )
-            final_image_name = "./img/" + image_name + ".jpg"
+            final_image_name = "./public/img/" + image_name + ".jpg"
             image_name_with_extension = image_name + ".jpg"
             image_name_with_extension_and_path = (
                 """./img/""" + image_name_with_extension
