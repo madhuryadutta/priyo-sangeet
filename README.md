@@ -1,4 +1,4 @@
-## Priyo Sangeet 1.5
+## Priyo Sangeet 2.0
 =================
 #### An open source web-based music player
 
