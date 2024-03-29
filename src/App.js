@@ -5,7 +5,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <MusicPlayer />
+        <div data-testid="music-player" className="music-player">
+          <MusicPlayer />
+        </div>
       </header>
     </div>
   );
